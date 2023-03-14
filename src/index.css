@@ -23,3 +23,8 @@ body {
 body::-webkit-scrollbar {
   display: none;
 }
+
+img {
+  display: block;
+  width: 100%;
+}
