@@ -1,0 +1,21 @@
+.host_menu {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  gap: 20px;
+
+  list-style: none;
+  border-bottom: 1px solid lightgray;
+  padding-block: 20px;
+}
+
+.host_menu li {
+  text-transform: uppercase;
+  transition: all linear 200ms;
+}
+
+.host_menu li:hover,
+.host_menu li:focus-visible {
+  transform: scale(1.05);
+  letter-spacing: 2px;
+}

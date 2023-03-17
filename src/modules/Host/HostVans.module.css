@@ -1,0 +1,31 @@
+.box {
+  display: flex;
+  flex-direction: column;
+  gap: 15px;
+
+  margin-block-end: 10px;
+}
+
+.flex {
+  width: 500px;
+  margin-inline: auto;
+  padding: 5px;
+
+  border: 1px solid lightgray;
+  border-radius: 6px;
+
+  display: flex;
+  justify-content: stretch;
+  align-items: start;
+}
+
+.flex img {
+  max-width: 50%;
+  border-top-left-radius: 6px;
+  border-bottom-left-radius: 6px;
+}
+
+.content {
+  width: 100%;
+  text-align: center;
+}

@@ -1,0 +1,53 @@
+.flex {
+  max-width: 700px;
+
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  gap: 30px;
+
+  padding-block: 10px;
+  margin-inline: auto;
+  margin-block-end: 20px;
+}
+
+.flex h3 {
+  margin: 0;
+  padding: 0;
+}
+
+.flex img {
+  max-width: 30%;
+}
+
+.link {
+  display: block;
+  padding: 10px;
+  margin-block: 10px;
+  font-size: large;
+  color: #222222;
+  text-decoration: none;
+  transition: all linear 200ms;
+}
+
+.link:hover,
+.link:focus-visible {
+  letter-spacing: 1px;
+  text-decoration: underline;
+}
+
+.submenu {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  gap: 15px;
+
+  list-style: none;
+  margin-block: 10px;
+
+  font-size: large;
+}
+
+.submenu a {
+  text-decoration: none;
+}

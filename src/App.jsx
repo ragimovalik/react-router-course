@@ -4,11 +4,8 @@ import About from "./pages/About";
 import Home from "./pages/Home";
 import Vans from "./pages/Vans";
 import VanDetails from "./modules/Vans/VanDetails";
-// import Host from "./pages/Host";
+import Host from "./pages/Host";
 import Layout from "./components/Layout";
-import Dashboard from "./modules/Host/Dashboard";
-import Incomes from "./modules/Host/Incomes";
-import Reviews from "./modules/Host/Reviews";
 
 import "./App.css";
 
@@ -16,15 +13,16 @@ function App() {
   return (
     <BrowserRouter>
       <Routes>
-        <Route element={<Layout />}>
-          <Route path="/" element={<Home />} />
-          <Route path="/about" element={<About />} />
-          <Route path="/vans" element={<Vans />} />
-          <Route path="/vans/:id" element={<VanDetails />} />
-          <Route path="/host" element={<Dashboard />}>
-            <Route path="/host/incomes" element={<Incomes />} />
-            <Route path="/host/reviews" element={<Reviews />} />
+        <Route path="/" element={<Layout />}>
+          <Route index element={<Home />} />
+          <Route path="about" element={<About />} />
+
+          <Route path="vans">
+            <Route index element={<Vans />} />
+            <Route path=":id" element={<VanDetails />} />
           </Route>
+
+          <Route path="host/*" element={<Host />} />
         </Route>
       </Routes>
     </BrowserRouter>
