@@ -24,15 +24,15 @@ const HostVans = () => {
         {hostVans &&
           hostVans.map(van => {
             return (
-              <Link to={`${van.id}`}>
-                <li key={van.id} className={s.flex}>
+              <li key={van.id} className={s.flex}>
+                <Link to={van.id}>
                   <img src={van.imageUrl} />
                   <div className={s.content}>
                     <h3>{van.name}</h3>
                     <p>Price: {van.price} USD</p>
                   </div>
-                </li>
-              </Link>
+                </Link>
+              </li>
             );
           })}
       </ul>

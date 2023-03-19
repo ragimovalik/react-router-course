@@ -6,6 +6,7 @@ import Vans from "./pages/Vans";
 import VanDetails from "./modules/Vans/VanDetails";
 import Host from "./pages/Host";
 import Layout from "./components/Layout";
+import FourOFour from "./pages/FourOFour";
 
 import "./App.css";
 
@@ -23,6 +24,8 @@ function App() {
           </Route>
 
           <Route path="host/*" element={<Host />} />
+
+          <Route path="*" element={<FourOFour />} />
         </Route>
       </Routes>
     </BrowserRouter>

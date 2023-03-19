@@ -1,10 +1,12 @@
-import { useParams } from "react-router-dom";
+import { useParams, Link, useLocation } from "react-router-dom";
 import { useEffect, useState } from "react";
 
 import s from "./VanDetails.module.css";
 
 const VanDetails = () => {
   const { id } = useParams();
+  const location = useLocation();
+
   const [vanToRender, setVanToRender] = useState(null);
 
   useEffect(() => {
@@ -19,10 +21,22 @@ const VanDetails = () => {
     getVan(id);
   }, [id]);
 
+  const toBackPageString = location.state?.search
+    ? `..?${location.state.search}`
+    : "..";
+
   return (
     <>
       {vanToRender ? (
         <div>
+          <Link className={s.link} to={toBackPageString} relative="path">
+            &larr;{" "}
+            <span>
+              Back to{" "}
+              {location.state?.search ? `${location.state.type}` : "all"} vans
+            </span>
+          </Link>
+
           <div className={s.flex}>
             <img src={vanToRender.imageUrl} alt="" />
             <div>

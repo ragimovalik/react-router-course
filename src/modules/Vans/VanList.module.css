@@ -1,11 +1,48 @@
 .list {
-  display: grid;
-  grid-template-columns: 1fr 1fr 1fr;
-  grid-gap: 10px;
+  display: flex;
+  justify-content: center;
+  align-items: start;
+  gap: 10px;
+  flex-wrap: wrap;
 
   list-style: none;
+  padding-inline: 10px;
 }
+
+.list li {
+  flex: 1 0 350px;
+}
+
 .list a {
   text-decoration: none;
   color: inherit;
+}
+
+.filters {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  gap: 15px;
+
+  padding-block: 20px;
+
+  list-style: none;
+  font-size: large;
+  text-transform: capitalize;
+}
+
+.filters button {
+  display: block;
+  padding: 0.5rem 1rem;
+  background-color: yellow;
+  border-radius: 20px;
+  transition: all linear 200ms;
+  text-transform: capitalize;
+  color: #222;
+}
+
+.filters button:hover,
+.filters button:focus-visible {
+  background-color: rgb(253, 253, 89);
+  transform: scale(1.1);
 }

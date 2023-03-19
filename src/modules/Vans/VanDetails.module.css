@@ -6,3 +6,19 @@
 
   padding-block: 10px;
 }
+
+.link {
+  display: block;
+  padding: 10px;
+  margin-block: 10px;
+  font-size: large;
+  color: #222222;
+  text-decoration: none;
+  transition: all linear 200ms;
+}
+
+.link:hover,
+.link:focus-visible {
+  letter-spacing: 1px;
+  text-decoration: underline;
+}
