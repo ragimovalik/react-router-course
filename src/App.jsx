@@ -1,4 +1,9 @@
-import { BrowserRouter, Routes, Route } from "react-router-dom";
+import {
+  RouterProvider,
+  createBrowserRouter,
+  createRoutesFromElements,
+  Route
+} from "react-router-dom";
 
 import About from "./pages/About";
 import Home from "./pages/Home";
@@ -10,26 +15,26 @@ import FourOFour from "./pages/FourOFour";
 
 import "./App.css";
 
+const router = createBrowserRouter(
+  createRoutesFromElements(
+    <Route path="/" element={<Layout />}>
+      <Route index element={<Home />} />
+      <Route path="about" element={<About />} />
+
+      <Route path="vans">
+        <Route index element={<Vans />} />
+        <Route path=":id" element={<VanDetails />} />
+      </Route>
+
+      <Route path="host/*" element={<Host />} />
+
+      <Route path="*" element={<FourOFour />} />
+    </Route>
+  )
+);
+
 function App() {
-  return (
-    <BrowserRouter>
-      <Routes>
-        <Route path="/" element={<Layout />}>
-          <Route index element={<Home />} />
-          <Route path="about" element={<About />} />
-
-          <Route path="vans">
-            <Route index element={<Vans />} />
-            <Route path=":id" element={<VanDetails />} />
-          </Route>
-
-          <Route path="host/*" element={<Host />} />
-
-          <Route path="*" element={<FourOFour />} />
-        </Route>
-      </Routes>
-    </BrowserRouter>
-  );
+  return <RouterProvider router={router} />;
 }
 
 export default App;
