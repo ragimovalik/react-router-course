@@ -1,47 +1,35 @@
-import { useEffect, useState } from "react";
-import { Link, useSearchParams } from "react-router-dom";
+import { useState } from "react";
+import { Link, useSearchParams, useLoaderData } from "react-router-dom";
 
 import { getVans } from "../../api/api";
 
 import s from "./VanList.module.css";
 
+export function loader() {
+  const res = getVans();
+
+  return res;
+}
+
 const VanList = () => {
+  const data = useLoaderData();
+
   const [searchParams, setSearchParams] = useSearchParams();
-  const [vans, setVans] = useState([]);
-  const [types, setTypes] = useState([]);
-  const [loading, setLoading] = useState(false);
   const [error, setError] = useState(null);
 
   const typeFilter = searchParams.get("type");
 
-  const displayedVans = typeFilter
-    ? vans.filter(v => v.type.toLowerCase() === typeFilter)
-    : vans;
-
-  useEffect(() => {
-    async function loadVans() {
-      setLoading(true);
-
-      try {
-        const data = await getVans();
-        const types = data?.map(v => v.type);
-        const uniqueTypes = new Set(types);
-        setVans(data);
-        setTypes(Array.from(uniqueTypes));
-      } catch (err) {
-        console.log("There was an error");
-        setError(err);
-      } finally {
-        setLoading(false);
-      }
-    }
-
-    loadVans();
-  }, []);
-
-  if (loading) {
-    return <h1>Loading</h1>;
+  if (!data) {
+    setError(err);
   }
+
+  const pickedTypes = data?.map(v => v.type);
+  const uniqueTypes = new Set(pickedTypes);
+  const types = Array.from(uniqueTypes);
+
+  const displayedVans = typeFilter
+    ? data.filter(v => v.type.toLowerCase() === typeFilter)
+    : data;
 
   if (error) {
     return <h1>There was an error: {error.message}</h1>;

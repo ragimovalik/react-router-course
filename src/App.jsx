@@ -13,6 +13,8 @@ import Host from "./pages/Host";
 import Layout from "./components/Layout";
 import FourOFour from "./pages/FourOFour";
 
+import { loader as vansLoader } from "./modules/Vans/VanList";
+
 import "./App.css";
 
 const router = createBrowserRouter(
@@ -22,7 +24,7 @@ const router = createBrowserRouter(
       <Route path="about" element={<About />} />
 
       <Route path="vans">
-        <Route index element={<Vans />} />
+        <Route index element={<Vans />} loader={vansLoader} />
         <Route path=":id" element={<VanDetails />} />
       </Route>
 
