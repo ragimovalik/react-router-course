@@ -12,6 +12,7 @@ import VanDetails from "./modules/Vans/VanDetails";
 import Host from "./pages/Host";
 import Layout from "./components/Layout";
 import FourOFour from "./pages/FourOFour";
+import Error from "./components/Error";
 
 import { loader as vansLoader } from "./modules/Vans/VanList";
 
@@ -24,7 +25,13 @@ const router = createBrowserRouter(
       <Route path="about" element={<About />} />
 
       <Route path="vans">
-        <Route index element={<Vans />} loader={vansLoader} />
+        const [loading, setLoading] = useState(false);
+        <Route
+          index
+          element={<Vans />}
+          loader={vansLoader}
+          errorElement={<Error />}
+        />
         <Route path=":id" element={<VanDetails />} />
       </Route>
 
