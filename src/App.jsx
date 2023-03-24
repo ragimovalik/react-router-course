@@ -8,10 +8,11 @@ import {
 import About from "./pages/About";
 import Home from "./pages/Home";
 import Vans from "./pages/Vans";
-import VanDetails from "./modules/Vans/VanDetails";
+import Login from "./pages/Login";
 import Host from "./pages/Host";
-import Layout from "./components/Layout";
 import FourOFour from "./pages/FourOFour";
+import VanDetails from "./modules/Vans/VanDetails";
+import Layout from "./components/Layout";
 import Error from "./components/Error";
 
 import { loader as vansLoader } from "./modules/Vans/VanList";
@@ -23,6 +24,7 @@ const router = createBrowserRouter(
     <Route path="/" element={<Layout />}>
       <Route index element={<Home />} />
       <Route path="about" element={<About />} />
+      <Route path="login" element={<Login />} />
 
       <Route path="vans">
         const [loading, setLoading] = useState(false);
