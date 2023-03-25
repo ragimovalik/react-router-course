@@ -14,6 +14,7 @@ import FourOFour from "./pages/FourOFour";
 import VanDetails from "./modules/Vans/VanDetails";
 import Layout from "./components/Layout";
 import Error from "./components/Error";
+import AuthRequired from "./components/AuthRequired";
 
 import { loader as vansLoader } from "./modules/Vans/VanList";
 
@@ -36,8 +37,9 @@ const router = createBrowserRouter(
         />
         <Route path=":id" element={<VanDetails />} />
       </Route>
-
-      <Route path="host/*" element={<Host />} />
+      <Route element={<AuthRequired />}>
+        <Route path="host/*" element={<Host />} />
+      </Route>
 
       <Route path="*" element={<FourOFour />} />
     </Route>
