@@ -1,5 +1,7 @@
 import { Link, NavLink } from "react-router-dom";
 
+import avatar from "../assets/avatar.png";
+
 import s from "./Header.module.css";
 
 const Header = () => {
@@ -34,6 +36,9 @@ const Header = () => {
         >
           Host
         </NavLink>
+        <Link to="login" className={s.link}>
+          <img src={avatar} className={s.icon} />
+        </Link>
       </nav>
     </header>
   );

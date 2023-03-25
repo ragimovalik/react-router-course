@@ -1,3 +1,13 @@
 .box {
   background: linear-gradient(60deg, #b9c5ce 20rem, #f2f2f2 0) bottom right;
 }
+
+.link {
+  display: inline-flex;
+  align-items: center;
+}
+
+.icon {
+  height: 18px;
+  width: 18px;
+}
