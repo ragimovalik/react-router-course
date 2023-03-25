@@ -3,10 +3,11 @@ import { BrowserRouter, Routes, Route } from "react-router-dom";
 import About from "./pages/About";
 import Home from "./pages/Home";
 import Vans from "./pages/Vans";
-import VanDetails from "./modules/Vans/VanDetails";
 import Host from "./pages/Host";
-import Layout from "./components/Layout";
 import FourOFour from "./pages/FourOFour";
+import VanDetails from "./modules/Vans/VanDetails";
+import Layout from "./components/Layout";
+import AuthRequired from "./components/AuthRequired";
 
 import "./App.css";
 
@@ -22,8 +23,9 @@ function App() {
             <Route index element={<Vans />} />
             <Route path=":id" element={<VanDetails />} />
           </Route>
-
-          <Route path="host/*" element={<Host />} />
+          <Route element={<AuthRequired />}>
+            <Route path="host/*" element={<Host />} />
+          </Route>
 
           <Route path="*" element={<FourOFour />} />
         </Route>
