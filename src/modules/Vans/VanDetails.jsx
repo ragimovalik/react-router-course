@@ -1,25 +1,18 @@
-import { useParams, Link, useLocation } from "react-router-dom";
-import { useEffect, useState } from "react";
+import { Link, useLocation, useLoaderData } from "react-router-dom";
 
 import s from "./VanDetails.module.css";
+import { getVans } from "../../api/api";
+
+export function loader({ params }) {
+  const res = getVans(params.id);
+
+  return res;
+}
 
 const VanDetails = () => {
-  const { id } = useParams();
+  const vanToRender = useLoaderData();
+
   const location = useLocation();
-
-  const [vanToRender, setVanToRender] = useState(null);
-
-  useEffect(() => {
-    async function getVan(vanId) {
-      const res = await fetch(`http://localhost:8000/api/vans/${vanId}`);
-
-      const data = await res.json();
-
-      setVanToRender(data.van);
-    }
-
-    getVan(id);
-  }, [id]);
 
   const toBackPageString = location.state?.search
     ? `..?${location.state.search}`
@@ -27,32 +20,28 @@ const VanDetails = () => {
 
   return (
     <>
-      {vanToRender ? (
-        <div>
-          <Link className={s.link} to={toBackPageString} relative="path">
-            &larr;{" "}
-            <span>
-              Back to{" "}
-              {location.state?.search ? `${location.state.type}` : "all"} vans
-            </span>
-          </Link>
+      <div>
+        <Link className={s.link} to={toBackPageString} relative="path">
+          &larr;{" "}
+          <span>
+            Back to {location.state?.search ? `${location.state.type}` : "all"}{" "}
+            vans
+          </span>
+        </Link>
 
-          <div className={s.flex}>
-            <img src={vanToRender.imageUrl} alt="" />
+        <div className={s.flex}>
+          <img src={vanToRender[0].imageUrl} alt="" />
+          <div>
+            <h2>{vanToRender[0].name}</h2>
+            <p>{vanToRender[0].description}</p>
             <div>
-              <h2>{vanToRender.name}</h2>
-              <p>{vanToRender.description}</p>
-              <div>
-                <span>{vanToRender.price}</span>
-                <span> USD</span>
-              </div>
-              <p>{vanToRender.type}</p>
+              <span>{vanToRender[0].price}</span>
+              <span> USD</span>
             </div>
+            <p>{vanToRender[0].type}</p>
           </div>
         </div>
-      ) : (
-        <h2>Loading...</h2>
-      )}
+      </div>
     </>
   );
 };

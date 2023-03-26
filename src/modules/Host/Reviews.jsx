@@ -1,5 +1,5 @@
 const Reviews = () => {
-  return <h3>Reviews</h3>;
+  return <h2>Reviews</h2>;
 };
 
 export default Reviews;
