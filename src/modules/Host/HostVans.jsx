@@ -1,9 +1,12 @@
 import { Link, useLoaderData } from "react-router-dom";
 import { getHostVans } from "../../api/api";
+import { requireAuth } from "../../utils/utils";
 
 import s from "./HostVans.module.css";
 
-export function loader() {
+export async function loader() {
+  await requireAuth();
+
   const res = getHostVans();
 
   return res;
@@ -16,20 +19,19 @@ const HostVans = () => {
     <div>
       <h2>Host Vans Page</h2>
       <ul className={s.box}>
-        {hostVans &&
-          hostVans.map(van => {
-            return (
-              <li key={van.id} className={s.flex}>
-                <Link to={van.id}>
-                  <img src={van.imageUrl} />
-                  <div className={s.content}>
-                    <h3>{van.name}</h3>
-                    <p>Price: {van.price} USD</p>
-                  </div>
-                </Link>
-              </li>
-            );
-          })}
+        {hostVans.map(van => {
+          return (
+            <li key={van.id} className={s.flex}>
+              <Link to={van.id}>
+                <img src={van.imageUrl} />
+                <div className={s.content}>
+                  <h3>{van.name}</h3>
+                  <p>Price: {van.price} USD</p>
+                </div>
+              </Link>
+            </li>
+          );
+        })}
       </ul>
     </div>
   );
