@@ -18,8 +18,6 @@ const HostVanDetails = () => {
     textDecoration: "underline"
   };
 
-  console.log(vanToRender);
-
   return (
     <section>
       <>

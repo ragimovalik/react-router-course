@@ -5,7 +5,6 @@ import s from "./HostVans.module.css";
 
 export function loader() {
   const res = getHostVans();
-  console.log(res);
 
   return res;
 }
