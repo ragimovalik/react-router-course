@@ -3,8 +3,8 @@ import { getHostVans } from "../../api/api";
 
 import { requireAuth } from "../../utils/utils";
 
-export async function loader({ params }) {
-  await requireAuth();
+export async function loader({ params, request }) {
+  await requireAuth(request);
 
   const { id } = params;
 

@@ -4,8 +4,8 @@ import { requireAuth } from "../../utils/utils";
 
 import s from "./HostVans.module.css";
 
-export async function loader() {
-  await requireAuth();
+export async function loader({ request }) {
+  await requireAuth(request);
 
   const res = getHostVans();
 
