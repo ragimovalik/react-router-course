@@ -1,10 +1,10 @@
 import { Link, useLocation, useLoaderData } from "react-router-dom";
 
 import s from "./VanDetails.module.css";
-import { getVans } from "../../api/api";
+import { getVan } from "../../api/api";
 
 export function loader({ params }) {
-  const res = getVans(params.id);
+  const res = getVan(params.id);
 
   return res;
 }
@@ -30,15 +30,15 @@ const VanDetails = () => {
         </Link>
 
         <div className={s.flex}>
-          <img src={vanToRender[0].imageUrl} alt="" />
+          <img src={vanToRender.imageUrl} alt="" />
           <div>
-            <h2>{vanToRender[0].name}</h2>
-            <p>{vanToRender[0].description}</p>
+            <h2>{vanToRender.name}</h2>
+            <p>{vanToRender.description}</p>
             <div>
-              <span>{vanToRender[0].price}</span>
+              <span>{vanToRender.price}</span>
               <span> USD</span>
             </div>
-            <p>{vanToRender[0].type}</p>
+            <p>{vanToRender.type}</p>
           </div>
         </div>
       </div>
