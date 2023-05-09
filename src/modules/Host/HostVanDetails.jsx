@@ -1,16 +1,11 @@
 import { NavLink, Link, Outlet, useLoaderData } from "react-router-dom";
-import { getHostVans } from "../../api/api";
+import { getVan } from "../../api/api";
 
 import { requireAuth } from "../../utils/utils";
 
 export async function loader({ params, request }) {
   await requireAuth(request);
-
-  const { id } = params;
-
-  const res = getHostVans(id);
-
-  return res;
+  return getVan(params.id);
 }
 
 import s from "./HostVanDetails.module.css";
@@ -29,15 +24,15 @@ const HostVanDetails = () => {
           &larr; <span>Back to all vans</span>
         </Link>
         <div className={s.flex}>
-          <img src={vanToRender[0].imageUrl} alt="" />
+          <img src={vanToRender.imageUrl} alt="" />
           <div>
-            <h3>{vanToRender[0].name}</h3>
-            {/* <p>{vanToRender[0].description}</p> */}
+            <h3>{vanToRender.name}</h3>
+            {/* <p>{vanToRender.description}</p> */}
             <div>
-              <span>Price: {vanToRender[0].price}</span>
+              <span>Price: {vanToRender.price}</span>
               <span> USD</span>
             </div>
-            <p>{vanToRender[0].type}</p>
+            <p>{vanToRender.type}</p>
           </div>
         </div>
 
@@ -70,7 +65,7 @@ const HostVanDetails = () => {
             </li>
           </ul>
         </nav>
-        <Outlet context={{ vanToRender: vanToRender[0] }} />
+        <Outlet context={{ vanToRender: vanToRender }} />
       </>
     </section>
   );

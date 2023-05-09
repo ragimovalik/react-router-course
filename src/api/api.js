@@ -4,7 +4,9 @@ import {
   collection,
   doc,
   getDocs,
-  getDoc
+  getDoc,
+  query,
+  where
 } from "firebase/firestore/lite";
 import { API_KEY } from "../../keys.js";
 
@@ -23,17 +25,12 @@ const db = getFirestore(app);
 const vansCollectionRef = collection(db, "vans");
 const usersCollectionRef = collection(db, "users");
 
-// ===============================
-
-// const BASE_URL = "http://localhost:8000";
-
 export async function getVans() {
   const querySnapshot = await getDocs(vansCollectionRef);
   const dataArr = querySnapshot.docs.map(doc => ({
     ...doc.data(),
     id: doc.id
   }));
-  console.log(dataArr);
   return dataArr;
 }
 
@@ -47,39 +44,14 @@ export async function getVan(id) {
   };
 }
 
-/* export async function getVans(id) {
-  const url = id ? `${BASE_URL}/api/vans/${id}` : `${BASE_URL}/api/vans`;
-  const res = await fetch(url);
-
-  if (!res.ok) {
-    throw {
-      message: "Failed to fetch vans",
-      statusText: res.statusText,
-      status: res.status
-    };
-  }
-
-  const data = await res.json();
-  return data.vans;
-}
-*/
-
-export async function getHostVans(id) {
-  const url = id
-    ? `${BASE_URL}/api/host/vans/${id}`
-    : `${BASE_URL}/api/host/vans`;
-  const res = await fetch(url);
-
-  if (!res.ok) {
-    throw {
-      message: "Failed to fetch hosts vans",
-      statusText: res.statusText,
-      status: res.status
-    };
-  }
-
-  const data = await res.json();
-  return data.vans;
+export async function getHostVans() {
+  const q = query(vansCollectionRef, where("hostId", "==", "123"));
+  const querySnapshot = await getDocs(q);
+  const dataArr = querySnapshot.docs.map(doc => ({
+    ...doc.data(),
+    id: doc.id
+  }));
+  return dataArr;
 }
 
 export async function loginUser(creds) {
@@ -104,7 +76,50 @@ export async function loginUser(creds) {
   return data;
 }
 
+// ================================================================
+// ========== Local Backend (Fastify) Version =====================
+
+/* 
+// const BASE_URL = "http://localhost:8000";
+
+export async function getVans(id) {
+  const url = id ? `${BASE_URL}/api/vans/${id}` : `${BASE_URL}/api/vans`;
+  const res = await fetch(url);
+
+  if (!res.ok) {
+    throw {
+      message: "Failed to fetch vans",
+      statusText: res.statusText,
+      status: res.status
+    };
+  }
+
+  const data = await res.json();
+  return data.vans;
+}
+
+export async function getHostVans(id) {
+  const url = id
+    ? `${BASE_URL}/api/host/vans/${id}`
+    : `${BASE_URL}/api/host/vans`;
+  const res = await fetch(url);
+
+  if (!res.ok) {
+    throw {
+      message: "Failed to fetch hosts vans",
+      statusText: res.statusText,
+      status: res.status
+    };
+  }
+
+  const data = await res.json();
+  return data.vans;
+}
+*/
+
 /*
+// FIREBASE CONFIGURATION
+
 // Import the functions you need from the SDKs you need
 import { initializeApp } from "firebase/app";
 // TODO: Add SDKs for Firebase products that you want to use

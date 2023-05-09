@@ -10,9 +10,7 @@ import Home from "./pages/Home";
 import Vans from "./pages/Vans";
 import Login from "./pages/Login";
 import FourOFour from "./pages/FourOFour";
-import VanDetails, {
-  loader as vanDetailsLoader
-} from "./modules/Vans/VanDetails";
+
 import Layout from "./components/Layout";
 import Error from "./components/Error";
 
@@ -29,6 +27,10 @@ import HostVanPhoto from "./modules/Host/HostVanPhoto";
 import HostVanInfo from "./modules/Host/HostVanInfo";
 
 import { loader as vansLoader } from "./modules/Vans/VanList";
+import VanDetails, {
+  loader as vanDetailsLoader
+} from "./modules/Vans/VanDetails";
+
 import {
   loader as loginLoader,
   action as loginAction
